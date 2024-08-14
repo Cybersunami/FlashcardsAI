@@ -52,14 +52,14 @@ export default function Home() {
               Creating flashcards has never been easier</Typography>
           </Grid>
           <Grid item xs={12} md={4}>
-            <Typography variant="h6">Smary Flashcards</Typography>
+            <Typography variant="h6">Smart Flashcards</Typography>
             <Typography>Our AI intelligently breaks down your text into concise flashcards,
               perfect for studying.
             </Typography>
           </Grid>
           <Grid item xs={12} md={4}>
             <Typography variant="h6">Accessible Anywhere</Typography>
-            <Typography>Accessible F;ashcrds Anywhere. Study on the go with ease!</Typography>
+            <Typography>Accessible Flashcrds Anywhere. Study on the go with ease!</Typography>
           </Grid>
         </Grid>
       </Box>
