@@ -26,7 +26,7 @@ export default function Generate() {
                 </Typography>
                 <TextField
                 value={text}
-                onChange={(e) => setText(e.target.vale)}
+                onChange={(e) => setText(e.target.value)}
                 label="Enter Text"
                 fullWidth
                 multiline

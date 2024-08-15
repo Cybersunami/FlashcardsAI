@@ -6,7 +6,7 @@ import Head from 'next/head'
 
 export default function Home() {
   return (
-    <Container maxWidth="ls">
+    <Container maxWidth="md">
       <Head>
         <title>Flashcard SaaS</title>
         <meta name="description" content="Create flashcard from your text "/>
@@ -45,20 +45,20 @@ export default function Home() {
         <Typography variant="h4" component="h2" gutterBottom>Features</Typography>
         <Grid container spacing={4}>
           <Grid item xs={12} md={4}>
-            <Typography variant="h6">Easy Text Input</Typography>
+            <Typography variant="h6" gutterBottom>Easy Text Input</Typography>
             <Typography>
               {' '}
               Simply input your text and let our software do the rest. 
               Creating flashcards has never been easier</Typography>
           </Grid>
           <Grid item xs={12} md={4}>
-            <Typography variant="h6">Smart Flashcards</Typography>
+            <Typography variant="h6" gutterBottom>Smart Flashcards</Typography>
             <Typography>Our AI intelligently breaks down your text into concise flashcards,
               perfect for studying.
             </Typography>
           </Grid>
           <Grid item xs={12} md={4}>
-            <Typography variant="h6">Accessible Anywhere</Typography>
+            <Typography variant="h6" gutterBottom>Accessible Anywhere</Typography>
             <Typography>Accessible Flashcrds Anywhere. Study on the go with ease!</Typography>
           </Grid>
         </Grid>
@@ -69,28 +69,30 @@ export default function Home() {
         <Grid container spacing={4}>
           <Grid item xs={12} md={6}>
             <Box sx={{
-              p: 4,
+              p: 3,
               border: '1px solid',
               borderColor: 'grey.300',
               borderRadius: '16px',
             }}>
               <Typography variant="h6" fontWeight="Bold">Basic</Typography>
               <Typography variant="h6">$5 / Month</Typography>
-              <Typography>
-                Access to Basic Features and Limited Storage</Typography>
+              <Typography gutterBottom>
+                Access to Basic Flashcard Features and Limited Storage</Typography>
+              <Button variant="contained">Choose Basic</Button>
             </Box>
           </Grid>
           <Grid item xs={12} md={6}>
           <Box sx={{
-              p: 4,
+              p: 3,
               border: '1px solid',
               borderColor: 'grey.300',
               borderRadius: '16px',
             }}>
               <Typography variant="h6" fontWeight="Bold">Pro</Typography>
-              <Typography>$10 / Month</Typography>
-              <Typography>
+              <Typography variant="h6">$10 / Month</Typography>
+              <Typography gutterBottom>
                 Unlimited Flashcard and Storage with Priority Support</Typography>
+              <Button variant="contained">Choose Pro</Button>
             </Box>
           </Grid>
         </Grid>
