@@ -20,8 +20,7 @@ You should return in the following JSON format:
 
 // processes the API response and returns the flashcards
 export async function POST(req) {
-    const geminiAI = new GoogleGenerativeAI(process.env.API_KEY)
-    //const model = await req.text()
+    const geminiAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY)
 
     const data = await req.text();
 
@@ -35,8 +34,9 @@ export async function POST(req) {
     try {
         const response = await geminiAI.predict({
             prompt: prompt,
-            model: "text-davinci-003",
+            model: 'gemini-1.5-pro',
         })
+
 
         //parse the JSON centent from the api response (response will be a 'flashcards' array with objects 'front' and 'back')
         const flashcards = JSON.parse(response.generations[0].text)
