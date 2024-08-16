@@ -19,18 +19,39 @@ export async function POST(req) {
     try {
      // checkout session creation
 
+     const { plan } = await req.json(); // gets the selected plan from the request body
+
+     const planConfig = {
+        basic: {
+            amount: 5,
+            name: 'Basic subscription'
+        },
+        pro: {
+            amount: 10,
+            name: 'Pro subscription'
+        }
+     }
+
+     // check if the plan exists
+     if (!planConfig[plan]) {
+        return NextResponse.json(
+            { error: { message: 'Invalid plan selected '}},
+            { status: 400 }
+        )
+     }
+
      // params includes all information needed for creating Stripe checkout session
      const params = {
-        mode: 'subscriptions',
+        mode: 'subscription',
         payment_method_types: ['card'],
         line_items: [
             {
                 price_data: {
                     currency: 'usd',
                     product_data: {
-                        name: 'Pro subscription',
+                        name: planConfig[plan].name,
                     },
-                    unit_amount: formatAmountForStripe(10, 'usd'),  // $10.00 per month
+                    unit_amount: formatAmountForStripe(planConfig[plan].amount, 'usd'),  // $10.00 per month
                     recurring: {
                         interval : 'month',
                         interval_count: 1,
