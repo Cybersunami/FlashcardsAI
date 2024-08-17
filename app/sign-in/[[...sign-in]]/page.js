@@ -4,16 +4,24 @@ import { SignIn } from '@clerk/nextjs'
 import Link from 'next/link'
 
 export default function SignUpPage() {
-    <AppBar position="static" sx={{backgroundColor: '#0a0a0a'}}>
-        <Toolbar>
-            <Typography variant="h6" sx={{flexGrow: 1}}>
-                Flashcard SaaS
-            </Typography>
-            <Button color="inherit">
-            <Link href="/sign-up" passHref>
-                Sign Up
-            </Link>
-            </Button>
+    return(
+        <AppBar position="static" sx={{backgroundColor: '#fff7ef'}}>
+            <Toolbar>
+                <Typography variant="h6" sx={{
+                    flexGrow: 1,
+                    color: '#221b15',
+                    }}>
+                    Flashcard SaaS
+                </Typography>
+                <Button variant="contained" color="inherit">
+                    <Link 
+                    href="/sign-up" 
+                    passHref
+                    >
+                        Sign Up
+                    </Link>
+                </Button>
+            </Toolbar>
             <Box
             display="flex"
             flexDirection="column"
@@ -21,11 +29,11 @@ export default function SignUpPage() {
             alignItems="center"
             sx={{textAlign: 'center', my: 4}}
             >
-                <Typography variant="h4" component="h1" gutterBottom>
-                    Sign In
-                </Typography>
-                <SignIn />
+            <Typography variant="h4" component="h1" gutterBottom>
+                Sign In
+            </Typography>
+            <SignIn />
             </Box>
-        </Toolbar>
-    </AppBar>
+        </AppBar>
+    )
 }
