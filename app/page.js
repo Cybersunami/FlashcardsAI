@@ -1,10 +1,43 @@
+"use client"
+
 import Image from "next/image";
-//import getStripe from "../utils.js/get-stripe";
+import Stripe from 'stripe'
+import getStripe from "../utils.js/get-stripe";
 import{SignedIn, SignedOut, UserButton} from '@clerk/nextjs'
 import {Container, Toolbar, Typography, Button, AppBar, Box, Grid} from '@mui/material'
 import Head from 'next/head'
 
 export default function Home() {
+
+  // handleSubmit handles the Stripe checkout process
+  const handleSubmit = async (plan) => {
+
+    const checkoutSession = await fetch('/api/checkout_sessions', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'applications/json',
+        origin: 'https://hocalhost:3000',
+      },
+      body: JSON.stringify({ plan}), // sends the selected plan to the server
+    })
+
+    // converts the response to JSON
+    const checkoutSessionJson = await checkoutSession.json();
+
+    const stripe = await getStripe();
+
+    const { error } = await stripe.redirectToCheckout({
+      sessionId: checkoutSessionJson.id,
+    })
+
+    if (error) {
+      console.warn(error.message);
+    }
+  }
+
+
+
+
   return (
     <Container maxWidth="md">
       <Head>
@@ -78,7 +111,7 @@ export default function Home() {
               <Typography variant="h6">$5 / Month</Typography>
               <Typography gutterBottom>
                 Access to Basic Flashcard Features and Limited Storage</Typography>
-              <Button variant="contained">Choose Basic</Button>
+              <Button variant="contained" onClick={() => handleSubmit('basic')}>Choose Basic</Button>
             </Box>
           </Grid>
           <Grid item xs={12} md={6}>
@@ -92,7 +125,7 @@ export default function Home() {
               <Typography variant="h6">$10 / Month</Typography>
               <Typography gutterBottom>
                 Unlimited Flashcard and Storage with Priority Support</Typography>
-              <Button variant="contained">Choose Pro</Button>
+              <Button variant="contained" onClick={() => handleSubmit('pro')}>Choose Pro</Button>
             </Box>
           </Grid>
         </Grid>
@@ -100,4 +133,6 @@ export default function Home() {
       </Box>
     </Container>
   )
+
+
 }
