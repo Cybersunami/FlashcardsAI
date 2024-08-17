@@ -30,6 +30,20 @@ export default function Generate() {
             return
         }
 
+        const response = await fetch('/api/generate', {
+            method: 'POST',
+            body: text,
+        })
+
+        // if response is incorrect/error occurs
+        if (!response.ok) {
+            throw new Error('Failed to generate flashcards')
+        }
+
+        // if response is successful, updates the flashcards with generated data
+        const data = await response.json()
+        setFlashcards(data)
+
         try {
             // sends POST request to /api/generate endpoint with the text that has been inputted
             const response = await fetch('/api/generate', {
