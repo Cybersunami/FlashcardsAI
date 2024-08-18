@@ -6,7 +6,13 @@ import {Container,
     TextField,
     Button,
     Typography,
+<<<<<<< Updated upstream
     Box,} from '@mui/material'
+=======
+    Box, Grid} from '@mui/material'
+import { ThemeProvider } from '@mui/material/styles'
+import theme from '../theme'
+>>>>>>> Stashed changes
 
 export default function Generate() {
     const {isLoaded, isSignedIn, user} = useUser()
@@ -14,8 +20,96 @@ export default function Generate() {
     const [flashcards, setFlashcards] = useState([])
     const [flipped, setFlipped] = useState([])
 
+<<<<<<< Updated upstream
     const handleSubmit = async () => {
         //Implement the API call here
+=======
+    // state for the flashcard set name 
+    const [setName, setSetName] = useState('')
+    // state for dialog open state
+    const [dialogOpen, setDialogOpen] = useState(false)
+
+    // functions to handle opening and closing the dialog
+    const handleOpenDialog = () => setDialogOpen(true)
+    const handleCloseDialog = () => setDialogOpen(false)
+
+
+
+    const handleSubmit = async () => {
+        // checks if input text is empty, shows alert if it is
+        if (!text.trim()) {
+            alert('Please enter some text to generate flashcards.')
+            return
+        }
+
+        try {
+            // sends POST request to /api/generate endpoint with the text that has been inputted
+            const response = await fetch('/api/generate', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({text})
+            })
+
+            // if response is incorrect/error occurs
+            if (!response.ok) {
+                throw new Error('Failed to generate flashcards')
+            }
+
+            // if response is successful, updates the flashcards with generated data
+            const data = await response.json()
+            console.log('API response:', data) // get rid of after
+
+            setFlashcards(data.flashcards || [])
+
+        }   catch (error) {
+            console.error('Error generating flashcards:', error)
+            alert('An error occured while generating flashcards. Please try again.')
+        }    
+    }
+
+    const handleCardClick = (id) => {
+        setFlipped((prev) => ({
+            ...prev,
+            [id]: !prev[id],
+        }))
+    }
+
+
+     // function that saves flashcards to Firebase
+    const saveFlashcards = async () => {
+        if (!setName.trim()) {
+            alert('Please enter a name for you flascard set.')
+            return
+        }
+
+        try {
+            const userDocRef = doc(collection(db, 'users'), user.id)
+            const userDocSnap = await getDoc(userDocRef)
+            const batch = writeBatch(db)
+
+            if (userDocSnap.exists()) {
+                const userData = userDocSnap.data()
+                const updatedSets = [...(userData.flashcardSets || []), { name: setName }]
+                batch.update(userDocRef, { flashcardSets: updatedSets })
+            } else {
+                batch.set(userDocRef, { flashcardSets: [{name: setName}] })
+            }
+
+            const setDocRef = doc(collection(userDocRef, 'flashcardSets'), setName)
+            batch.set(setDocRef, { flashcards })
+
+            await batch.commit()
+
+            alert('Flashcards saved successfully!')
+            handleCloseDialog()
+            setSetName('')
+        } catch (error) {
+            console.error('Error saving flashcards:', error)
+            alert('An error occurred while saving flashcards. Please try again.')
+        }
+>>>>>>> Stashed changes
     }
 
     return (
@@ -45,6 +139,7 @@ export default function Generate() {
                 </Button>
             </Box>
 
+<<<<<<< Updated upstream
             {/*Flashcard Disply*/}
             {flashcards.length > 0 && (
             <Box sx={{ mt: 4 }}>
@@ -68,5 +163,31 @@ export default function Generate() {
             </Box>
             )}
         </Container>
+=======
+                {/*Flashcard Disply*/}
+                {flashcards.length > 0 && (
+                    <Box sx={{ mt: 4 }}>
+                    <Typography variant="h5" component="h2" gutterBottom>
+                        Generated Flashcards
+                    </Typography>
+                    <Grid container spacing={2}>
+                        {flashcards.map((flashcard, index) => (
+                            <Grid item xs={12} sm={6} md={4} key={index}>
+                                <Card>
+                                    <CardContent>
+                                        <Typography variant="h6">Front:</Typography>
+                                        <Typography>{flashcard.front}</Typography>
+                                        <Typography variant="h6" sx={{ mt: 2 }}>Back:</Typography>
+                                        <Typography>{flashcard.back}</Typography>
+                                    </CardContent>
+                                </Card>
+                            </Grid>
+                        ))}
+                    </Grid>
+                </Box>
+            )}
+            </Container>
+        </ThemeProvider>
+>>>>>>> Stashed changes
     )
 }

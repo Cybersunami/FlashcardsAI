@@ -1,8 +1,23 @@
+<<<<<<< Updated upstream
 import Image from "next/image";
 //import getStripe from "../utils.js/get-stripe";
 import{SignedIn, SignedOut, UserButton} from '@clerk/nextjs'
 import {Container, Toolbar, Typography, Button, AppBar, Box, Grid} from '@mui/material'
 import Head from 'next/head'
+=======
+"use client"
+
+//import Image from "next/image";
+//import Stripe from 'stripe'
+import getStripe from "../utils.js/get-stripe";
+import{SignedIn, SignedOut, UserButton} from '@clerk/nextjs'
+import {Container, Toolbar, Typography, Button, AppBar, Box, Grid} from '@mui/material'
+import Head from 'next/head'
+import { ThemeProvider } from "@mui/material/styles";
+import theme from './theme'
+//import flashcard from './images/flashcard.png'
+
+>>>>>>> Stashed changes
 
 export default function Home() {
   return (
