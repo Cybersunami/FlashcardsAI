@@ -33,12 +33,12 @@ let theme = createTheme({
   },
   typography: {
     h6: {
-      fontWeight: 375
+      fontWeight: 550,
     },
-    fontWeightLight: 300,
-    fontWeightRegular: 350,
-    fontWeightMedium: 500,
-    fontWeightBold: 600
+    fontWeightLight: 400,
+    fontWeightRegular: 50,
+    fontWeightMedium: 600,
+    fontWeightBold: 700
   }
 });
 
