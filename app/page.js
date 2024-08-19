@@ -69,7 +69,6 @@ export default function Home() {
             </Typography>
             <SignedOut>
               <Button 
-                //variant="outlined" 
                 color="inherit" 
                 href="/sign-in"
               >
@@ -109,7 +108,7 @@ export default function Home() {
           my: 6,
         }}>
           
-          {/* Fwature section
+          {/* Feature section
           <Typography variant="h4" component="h2" gutterBottom>Features</Typography>*/}
           <Grid 
             container spacing={4}
@@ -238,11 +237,10 @@ export default function Home() {
           component="h2" 
           gutterBottom
           sx={{
-            border: '1px solid',
+            border: '2px solid',
+            borderRadius: '10px',
             padding: 1,
-            //display: 'inline-block',
-            //borderRadius: '10px',
-            backgroundColor: '#ffffff',
+            backgroundColor: '#fff7ef',
           }}>Subscription Plans</Typography>
           <Grid container spacing={4}>
             <Grid item xs={12} md={6}>
