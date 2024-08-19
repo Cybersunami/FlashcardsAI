@@ -8,7 +8,6 @@ import {Container, Toolbar, Typography, Button, AppBar, Box, Grid} from '@mui/ma
 import Head from 'next/head'
 import { ThemeProvider } from "@mui/material/styles";
 import theme from './theme'
-import flashcard from './images/flashcard.png'
 
 
 export default function Home() {
@@ -70,13 +69,8 @@ export default function Home() {
             </Typography>
             <SignedOut>
               <Button 
-                variant="contained" 
                 color="inherit" 
                 href="/sign-in"
-                sx={{
-                  backgroundColor: '#eda78b',
-                  borderRadius: '8px',
-                }}
               >
                 Login
               </Button>
@@ -106,7 +100,7 @@ export default function Home() {
             The easiest way to create flashcards from your text.
           </Typography>
           <Button variant="contained" color="primary" sx={{mt:2, mr:2}} href="/generate">
-            Generate Flashcards
+            Start Here
           </Button>
         </Box>
 
@@ -114,43 +108,140 @@ export default function Home() {
           my: 6,
         }}>
           
-          {/* Fwature section
+          {/* Feature section
           <Typography variant="h4" component="h2" gutterBottom>Features</Typography>*/}
-          <Grid container spacing={4}>
-            <Grid item xs={12} md={4}>
+          <Grid 
+            container spacing={4}
+            justifyContent= "center"
+            >
+            <Grid 
+            item 
+            xs={12} 
+            md={4} 
+            sx={{
+              display: 'flex',
+              flexDirection: 'column',
+              alignItems: 'center', // Centers content horizontally
+              textAlign: 'center',  // Centers text within the Typography
+            }}            >
               <Typography 
                 variant="h6" 
                 gutterBottom
+                sx={{
+                  textAlign:'center',
+                  padding: 1,
+                  border: '2px solid',
+                  borderRadius: '10px',
+                  display: 'inline-block',
+                  backgroundColor: '#fff7ef',
+                }}
                 >Easy Text Input</Typography>
                 <Typography
                   sx={{
-                    //textAlign: 'center',
-                    //position:'absolute',
-                    //top: '40%',
-                    //backgroundColor: 'lightgray',
-                    textShadow: '4px 4px 2px rgba(211, 211, 211, 1)'
-                    //left: '5%',
-                    //transform: 'translate(-40%, -5%)'
-                  }}
+                    padding: '8px',
+                    fontSize: '1.1rem',
+                    textAlign:'center',
+                    textShadow: `
+                      2px 2px 0px #fff, 
+                      -2px -2px 0px #fff, 
+                      2px -2px 0px #fff, 
+                      -2px 2px 0px #fff, 
+                      2px 2px 5px #fff
+                    `,
+                      }}
                   >
                     Simply input your text and let our software do the rest. 
                 Creating flashcards has never been easier</Typography>
             </Grid>
-            <Grid item xs={12} md={4}>
-              <Typography variant="h6" gutterBottom>Smart Flashcards</Typography>
-              <Typography sx={{ padding: '8px' }}>Our AI intelligently breaks down your text into concise flashcards,
+            <Grid 
+              item 
+              xs={12} 
+              md={4}
+              sx={{
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: 'center', // Centers content horizontally
+                textAlign: 'center',  // Centers text within the Typography
+              }}            
+            >
+              <Typography 
+                variant="h6" 
+                gutterBottom
+                sx={{
+                  padding: 1,
+                  border: '2px solid ',
+                  borderRadius: '10px',
+                  display: 'inline-block',
+                  backgroundColor: '#fff7ef',
+                }}
+              >Smart Flashcards</Typography>
+              <Typography 
+                
+                sx={{ padding: '8px',
+                      fontSize: '1.1rem',
+                      textAlign:'center',
+                      textShadow: `
+                        2px 2px 0px #fff, 
+                        -2px -2px 0px #fff, 
+                        2px -2px 0px #fff, 
+                        -2px 2px 0px #fff, 
+                        2px 2px 5px #fff
+                      `,
+                    }}
+               >Our AI intelligently breaks down your text into concise flashcards,
                 perfect for studying.
               </Typography>
             </Grid>
-            <Grid item xs={12} md={4}>
-              <Typography variant="h6" gutterBottom>Accessible Anywhere</Typography>
-              <Typography sx={{ padding: '8px' }}>Accessible Flashcards Anywhere. Study on the go with ease!</Typography>
+            <Grid 
+              item 
+              xs={12} 
+              md={4}
+              sx={{
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: 'center', // Centers content horizontally
+                textAlign: 'center',  // Centers text within the Typography
+              }}            
+            >
+                <Typography 
+                variant="h6" 
+                gutterBottom
+                sx={{
+                  padding: 1,
+                  border: '2px solid ',
+                  borderRadius: '10px',
+                  display: 'inline-block',
+                  backgroundColor: '#fff7ef',
+                }}
+              >Accessible Anywhere</Typography>
+              <Typography sx={{ 
+                          padding: '8px',
+                          fontSize: '1.1rem',
+                          textAlign:'center',
+                          textShadow: `
+                            2px 2px 0px #fff, 
+                            -2px -2px 0px #fff, 
+                            2px -2px 0px #fff, 
+                            -2px 2px 0px #fff, 
+                            2px 2px 5px #fff
+                          `,
+                          }}
+              >Accessible Flashcards Anywhere. Study on the go with ease!</Typography>
             </Grid>
           </Grid>
         </Box>
       
         <Box sx={{my:6, textAlign:'center'}}>
-          <Typography variant="h4" component="h2" gutterBottom>Pricing</Typography>
+          <Typography 
+          variant="h4" 
+          component="h2" 
+          gutterBottom
+          sx={{
+            border: '2px solid',
+            borderRadius: '10px',
+            padding: 1,
+            backgroundColor: '#fff7ef',
+          }}>Subscription Plans</Typography>
           <Grid container spacing={4}>
             <Grid item xs={12} md={6}>
               <Box sx={{
