@@ -33,8 +33,10 @@ export async function POST(req) {
         const response = result.response;
 
         const output = response.candidates[0].content.parts[0].text
+        
+        const flashcards = JSON.parse(output);
 
-        return NextResponse.json({output:output})
+        return NextResponse.json({flashcards})
     } catch (error) {
         console.log(error);
     }
