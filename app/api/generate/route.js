@@ -20,29 +20,22 @@ You should return in the following JSON format:
 
 // processes the API response and returns the flashcards
 export async function POST(req) {
-    const geminiAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY)
-
-    const data = await req.text();
-
-    const prompt = {
-        message: [
-            { role: 'system', content: systemPrompt },
-            { role: 'user', content: data },
-        ],
-    }
-
     try {
-        const response = await geminiAI.predict({
-            prompt: prompt,
-            model: 'gemini-1.5-pro',
-        })
+        const geminiAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY)
+        const model = geminiAI.getGenerativeModel({model:'gemini-pro'})
+        const data = await req.json()
+
+        const userText = data.text
+        const prompt = `${systemPrompt}\n\nUser Input:\n${userText}`
 
 
-        //parse the JSON centent from the api response (response will be a 'flashcards' array with objects 'front' and 'back')
-        const flashcards = JSON.parse(response.generations[0].text)
+        const result = await model.generateContent(prompt)
+        const response = result.response;
 
-        return NextResponse.json(flashcards.flashcards);
+        const output = response.candidates[0].content.parts[0].text
+
+        return NextResponse.json({output:output})
     } catch (error) {
-        console.error(error)
+        console.log(error);
     }
 }
