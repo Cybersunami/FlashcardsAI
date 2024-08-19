@@ -7,16 +7,19 @@ import {Container,
     Button,
     Typography,
     Box,
+    Grid,
+    Card,
+    CardContent,
     Toolbar,
     AppBar,} from '@mui/material'
 import { ThemeProvider } from '@mui/material/styles'
 import theme from '../theme'
 
 export default function Generate() {
-    const {isLoaded, isSignedIn, user} = useUser()
+    //const {isLoaded, isSignedIn, user} = useUser()
     const [text, setText] = useState('')
     const [flashcards, setFlashcards] = useState([])
-    const [flipped, setFlipped] = useState([])
+    //const [flipped, setFlipped] = useState([])
 
     // state for the flashcard set name 
     const [setName, setSetName] = useState('')
@@ -28,27 +31,6 @@ export default function Generate() {
     const handleCloseDialog = () => setDialogOpen(false)
 
     const handleSubmit = async () => {
-
-        // // checks if input text is empty, shows alert if it is
-        // if (!text.trim()) {
-        //     alert('Please enter some text to generate flashcards.')
-        //     return
-        // }
-
-        // const response = await fetch('/api/generate', {
-        //     method: 'POST',
-        //     body: text,
-        // })
-
-        // // if response is incorrect/error occurs
-        // if (!response.ok) {
-        //     throw new Error('Failed to generate flashcards')
-        // }
-
-
-        // if response is successful, updates the flashcards with generated data
-        // const data = await response.json()
-        // setFlashcards(data)
 
         try {
             // sends POST request to /api/generate endpoint with the text that has been inputted
@@ -67,8 +49,11 @@ export default function Generate() {
 
             // if response is successful, updates the flashcards with generated data
             const data = await response.json()
-            console.log('API response:', data)
+            console.log('API response:', data.flashcards)
+
             setFlashcards(data.flashcards)
+            handleOpenDialog()  // not sure if we need this 
+
         }   catch (error) {
             console.error('Error generating flashcards:', error)
             alert('An error occured while generating flashcards. Please try again.')
