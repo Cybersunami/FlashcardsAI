@@ -6,7 +6,9 @@ import {Container,
     TextField,
     Button,
     Typography,
-    Box,} from '@mui/material'
+    Box,
+    Toolbar,
+    AppBar,} from '@mui/material'
 import { ThemeProvider } from '@mui/material/styles'
 import theme from '../theme'
 
@@ -26,6 +28,7 @@ export default function Generate() {
     const handleCloseDialog = () => setDialogOpen(false)
 
     const handleSubmit = async () => {
+
         // // checks if input text is empty, shows alert if it is
         // if (!text.trim()) {
         //     alert('Please enter some text to generate flashcards.')
@@ -41,6 +44,7 @@ export default function Generate() {
         // if (!response.ok) {
         //     throw new Error('Failed to generate flashcards')
         // }
+
 
         // if response is successful, updates the flashcards with generated data
         // const data = await response.json()
@@ -116,9 +120,31 @@ export default function Generate() {
     return (
         <ThemeProvider theme={theme}>
             <Container maxWidth="md">
+                <AppBar position="fixed">
+                    <Toolbar>
+                        <Typography variant="h6" sx={{
+                            flexGrow: 1,
+                            color: '#221b15',
+                            }}>
+                            Flashcard SaaS
+                        </Typography>
+                    </Toolbar>
+                </AppBar>
                 {/*Generate Flashcard Natassia Notes: Make it centered on the page*/}
-                <Box sx={{ my: 4 }}>
-                    <Typography variant="h4" component="h1" gutterBottom>
+                <Box sx={{ 
+                    my: 4,
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    display: 'flex',
+                    flexDirection: 'column', 
+                    }}>
+                    <Typography 
+                    variant="h4" 
+                    component="h1" 
+                    gutterBottom
+                    sx={{
+                        textAlign: 'center',
+                    }}>
                         Generate Flashcards
                     </Typography>
                     <TextField
@@ -129,7 +155,11 @@ export default function Generate() {
                     multiline
                     rows={4}
                     variant="outlined"
-                    sx={{ mb: 2 }}
+                    sx={{ mb: 2, 
+                        color: '#221b15',
+                        backgroundImage: 'url(https://img.freepik.com/premium-photo/notebook-paper-background-lined-notebook-paper-crumpled-paper-background_322958-3948.jpg)',
+                        
+                    }}
                     />
                     <Button 
                     variant="contained" 
