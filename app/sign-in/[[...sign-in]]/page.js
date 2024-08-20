@@ -1,27 +1,16 @@
 import React from 'react'
-import { Container, Box, Typography, AppBar, Toolbar, Button } from '@mui/material'
+import { Container, Box, Typography, AppBar, Toolbar, Button, Link as MuiLink, ThemeProvider} from '@mui/material'
 import { SignIn } from '@clerk/nextjs'
 import Link from 'next/link'
+import NavBar from '../../NavBar'
+import theme from '../../theme'
 
 export default function SignUpPage() {
     return(
+        <ThemeProvider theme={theme}>
+
         <AppBar position="static" sx={{backgroundColor: '#fff7ef'}}>
-            <Toolbar>
-                <Typography variant="h6" sx={{
-                    flexGrow: 1,
-                    color: '#221b15',
-                    }}>
-                    Flashcard SaaS
-                </Typography>
-                <Button variant="contained" color="inherit">
-                    <Link 
-                    href="/sign-up" 
-                    passHref
-                    >
-                        Sign Up
-                    </Link>
-                </Button>
-            </Toolbar>
+            <NavBar />
             <Box
             display="flex"
             flexDirection="column"
@@ -32,8 +21,10 @@ export default function SignUpPage() {
             <Typography variant="h4" component="h1" gutterBottom>
                 Sign In
             </Typography>
+
             <SignIn />
             </Box>
         </AppBar>
+        </ThemeProvider>
     )
 }

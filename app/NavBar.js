@@ -21,19 +21,10 @@ export default function NavBar() {
 
           <SignedOut>
             <Button color="inherit" href="/sign-in">
-              Login
+              SignIn/SignUp
             </Button>
-            <Button
-              variant="contained"
-              color="inherit"
-              href="/sign-up"
-              sx={{
-                backgroundColor: "#eb8da1",
-                borderRadius: "8px",
-              }}
-            >
-              Sign Up
-            </Button>
+
+            <MuiLink href="/" sx={{ color: 'black', textDecoration: 'none', fontWeight: 'medium' }}>Home</MuiLink>
 
 
           </SignedOut>
